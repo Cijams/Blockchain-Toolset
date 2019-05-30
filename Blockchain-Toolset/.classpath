@@ -9,5 +9,9 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="build/apache-tomcat-9.0.20/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/json-20140107.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.6.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="build/gson-2.6.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/gson-2.8.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
