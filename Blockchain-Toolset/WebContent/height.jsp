@@ -30,10 +30,12 @@
     	$(".right_text").append(blockData[1]);
     	$(".text").append("<br>" + blockData[2]);
     	$(".right_text").append("<br>" + blockData[3]);
+
     }, millisecondsToWait);
 
-    
   </script>
+ 
+  
 </head>
 <body>
   <button id="somebutton">press here</button>
@@ -47,6 +49,28 @@
 
       </div>
     </div>
+  
+  
+  <table id="myTable">
+    <thead>
+        <tr>
+            <th>My Header</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>aaaaa</td> 
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>My footer</td>
+        </tr>
+    </tfoot>
+</table>
+  
+  
+  
 </body>
 
 </html>
