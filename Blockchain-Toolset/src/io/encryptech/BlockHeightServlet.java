@@ -26,11 +26,13 @@ public class BlockHeightServlet extends HttpServlet {
 
     @SuppressWarnings("resource")
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    list = new ArrayList<>();
+	    String blockNumber = request.getParameter("blockNumber");
 	    String out = "Failed to connect";
+	    String URL = "https://blockchain.info/block-height/" + blockNumber + "?format=json";
     	try {
-        	out = new Scanner(new URL("https://blockchain.info/block-height/5?format=json").openStream(), "UTF-8").useDelimiter("\\A").next();
+        	out = new Scanner(new URL(URL).openStream(), "UTF-8").useDelimiter("\\A").next();
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
@@ -47,7 +49,6 @@ public class BlockHeightServlet extends HttpServlet {
        // list1.add(data[31]);		// time
       //  list1.add(data[21]);		// btc
 
-       
         String json = new Gson().toJson(list);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
