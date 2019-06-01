@@ -12,16 +12,27 @@
 
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
   <script type="text/javascript">
+  let blockData = [];
+  var height;
     $(document).on("click", "#somebutton", function() {
     	 $(".jumbotron").show();
       $.get("BlockHeightServlet", function(responseJson) {
-        var $ul = $("<p>").appendTo($(".text"));
         $.each(responseJson, function(index, item) {
-          $("<p>").text(item).appendTo($ul);
+        blockData.push(item);
         });
       });
       $("p").remove();
     });
+    
+    var millisecondsToWait = 2000;
+    setTimeout(function() {
+    	$(".text").append(blockData[0]);
+    	$(".right_text").append(blockData[1]);
+    	$(".text").append("<br>" + blockData[2]);
+    	$(".right_text").append("<br>" + blockData[3]);
+    }, millisecondsToWait);
+
+    
   </script>
 </head>
 <body>
@@ -29,13 +40,13 @@
   <div class="container">
     <div class="jumbotron">
       <div class="text">
+      
+      </div>
+      <div class="right_text">
+      </div>
 
       </div>
     </div>
-  </div>
-
-
-
 </body>
 
 </html>
