@@ -23,17 +23,22 @@
         text-align: left;
     }
 </style>
+
+
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript">
+<script>
     $(document).ready(function(){
         $(".add-row").click(function(){
-            var name = $("#name").val();
-            var email = $("#email").val();
-            var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + name + "</td><td>" + email + "</td></tr>";
+            var name = "Chris";
+            var email = "Cocopelly";
+            var markup = "<tr><td>"+name+"</td><td>" + email +  "</td><td>";;
             $("table tbody").append(markup);
         });
-    
+    });    
 </script>
+
+
+
 </head>
 <body>
     <form>
@@ -49,13 +54,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><input type="checkbox" name="record"></td>
-                <td>Peter Parker</td>
-                <td>peterparker@mail.com</td>
-            </tr>
         </tbody>
     </table>
-    <button type="button" class="delete-row">Delete Row</button>
 </body> 
 </html>         
