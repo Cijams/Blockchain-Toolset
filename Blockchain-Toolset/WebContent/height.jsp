@@ -29,6 +29,13 @@
 	    });
 	  </script>
 	
+	<script>
+	function alerty() {
+		alert("gi");
+	}
+	</script>
+	
+	
 	  <script>
 	    var counter = 0;
 	    $(document).ready(function() {
@@ -80,7 +87,8 @@
 	      </tbody>
 	    </table>
 	  </div>
-	
+	  
+	<div id="spacer"></div>
 
 <p id="demo"></p>
 
