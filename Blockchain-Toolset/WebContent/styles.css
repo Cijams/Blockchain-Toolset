@@ -64,6 +64,21 @@ body {
 	color: black !important;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+
+.page-footer {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.spacer {
+	padding-top: 50px;
+}
+
 
 
 	

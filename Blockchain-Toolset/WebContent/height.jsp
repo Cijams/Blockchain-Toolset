@@ -14,19 +14,18 @@
 	
 	  <script>
 	    let blockData = [];
-	    var height = 10; // RM ME
-	    
-
-	    
+	    var height = 0;
 	    $(document).on("click", "#somebutton", function() {
-	      $.post("BlockHeightServlet", {
-	          blockNumber: height + ""
+	    	height = document.getElementById("blockSearch").elements[0].value;
+	     	$.post("BlockHeightServlet", {
+	        	blockNumber: height + ""
 	        },
 	        function(responseJson) {
 	          $.each(responseJson, function(index, item) {
 	            blockData.push(item);
 	          });
 	        });
+	      myFunction();
 	    });
 	  </script>
 	
@@ -42,14 +41,11 @@
 	    });
 	  </script>
 	
-	  <script>
-	    $(document).on("click", "#somebutton", function() {
-	      console.log("sup bruv");
-	    });
-	  </script>
+	  
 	</head>
 	
 	<body>
+	<div class="sticky">
 	  <nav id="test" class="navbar navbar-expand-lg navbar-light bg-light">
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
@@ -70,13 +66,13 @@
 	          <a class="nav-link" href="#">Tools</a>
 	        </li>
 	      </ul>
-	      <form class="form-inline my-2 my-lg-0">
+	      <form id="blockSearch" class="form-inline my-2 my-lg-0">
 	        <input id="heights" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
 	        <button id="somebutton" class="btn btn-outline-success my-1 my-sm-0" type="button">Search</button>
 	      </form>
 	    </div>
 	  </nav>
-	
+	</div>
 	  <!-- Place holder for Blockchain data to be inserted. -->
 	  <div class="container">
 	    <table class="table">
@@ -85,19 +81,13 @@
 	    </table>
 	  </div>
 	
-	
-<form id="myForm">
-  First name: <input type="text" name="fname"><br>
-</form> 
-
-<button onclick="myFunction()">Try it</button>
 
 <p id="demo"></p>
 
 <script>
 function myFunction() {
   var x = document.getElementById("myForm").elements[0].value;
-  alert(x);
+ // alert(x);
 }
 </script>
 
