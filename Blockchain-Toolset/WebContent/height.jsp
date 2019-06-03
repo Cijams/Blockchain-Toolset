@@ -24,16 +24,18 @@
 	          $.each(responseJson, function(index, item) {
 	            blockData.push(item);
 	          });
+	          myfunc();
 	        });
-	      myFunction();
+	     	
 	    });
+
+	    function myfunc() {
+	    	
+	    }
+	    
 	  </script>
 	
-	<script>
-	function alerty() {
-		alert("gi");
-	}
-	</script>
+
 	
 	
 	  <script>

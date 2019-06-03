@@ -28,45 +28,16 @@ public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	
-	
-	
-	
-	@SuppressWarnings("resource")
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    List<String> list = new ArrayList<>();
+	    list.add("item1");
+	    list.add("item2");
+	    list.add("item3");
+	    String json = new Gson().toJson(list);
 
-
-	    
-	    String out = "Failed to connect";
-    	try {
-        	out = new Scanner(new URL("https://blockchain.info/block-height/5?format=json").openStream(), "UTF-8").useDelimiter("\\A").next();
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    	}
-		JSONArray jsonArray = null;
-		JSONObject jsnobject = new JSONObject(out);
-		jsonArray = (JSONArray) jsnobject.getJSONArray("blocks");
-		String[] data = jsonArray.toString().split(",");
-    	
-        List<String> list1 = new ArrayList<>();
-        String[] blockData = new String[SIZE];
-        
-        String height[] = data[33].split(":");
-        height[0] = height[0].replaceAll("[^\\p{IsDigit}\\p{IsAlphabetic}]", "");
-        height[1] = height[1].replaceAll("[^\\p{IsDigit}\\p{IsAlphabetic}]", "");
-        
-        
-        list1.add(height[0]);		// height
-        list1.add(height[1]);
-       // list1.add(data[32]);		// hash
-       // list1.add(data[1]);		// next block
-       // list1.add(data[31]);		// time
-      //  list1.add(data[21]);		// btc
-
-       
-        String json = new Gson().toJson(list1);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);
+	    response.setContentType("application/json");
+	    response.setCharacterEncoding("UTF-8");
+	    response.getWriter().write(json);
 	}
-}
+	}

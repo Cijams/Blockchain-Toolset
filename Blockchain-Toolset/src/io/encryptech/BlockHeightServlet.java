@@ -43,6 +43,7 @@ public class BlockHeightServlet extends HttpServlet {
 		
 		addStrToList(data[33]);
 		addStrToList(data[32]);
+		addStrToList(data[31]);
         
        // list1.add(data[32]);		// hash
        // list1.add(data[1]);		// next block
