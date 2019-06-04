@@ -4,6 +4,12 @@
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="styles.css">
+	  
+	  
+		<link rel="stylesheet" href="dist/ladda-themeless.min.css">
+		<script src="dist/spin.min.js"></script>
+		<script src="dist/ladda.min.js"></script>
+	  
 	
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -16,8 +22,10 @@
 	    let blockData = [];
 	    var height = 0;
 	    $(document).on("click", "#somebutton", function() {
+
+	    	blockData = [];
 	    	height = document.getElementById("blockSearch").elements[0].value;
-	     	$.post("BlockHeightServlet", {
+	     	$.post("TestServlet", {
 	        	blockNumber: height + ""
 	        },
 	        function(responseJson) {
@@ -25,13 +33,34 @@
 	            blockData.push(item);
 	          });
 	          myfunc();
-	        });
-	     	
+
+	        }, "json");
+
 	    });
 
 	    function myfunc() {
 	    	
 	    }
+	    
+	    
+	    /*
+	    $(function() {
+	    	$('#form-somebutton').click(function(e){
+	    	 	e.preventDefault();
+	    	 	var l = Ladda.create(this);
+	    	 	l.start();
+	    	 	$.post("TestServlet", 
+	    	 	    { blockNumber: height + "" },
+	    	 	  function(response){
+	    	 	    console.log(response);
+	    	 	  }, "json")
+	    	 	.always(function() { l.stop(); });
+	    	 	return false;
+	    	});
+	    });
+	    */
+	    
+	    
 	    
 	  </script>
 	
@@ -42,18 +71,32 @@
 	    var counter = 0;
 	    $(document).ready(function() {
 	      $("#somebutton").click(function() {
-	        var field = blockData[counter++];
-	        var data = blockData[counter++];
-	        var markup = "<tr><td>" + field + "</td><td>" + data;
-	        $("table tbody").append(markup);
+	    	  testFunc();
 	      });
 	    });
+	    
+	    function testFunc() {
+	    	$( ".table tbody" ).empty();
+	    	  
+        	var millisecondsToWait = 2500;
+        	setTimeout(function() {
+    	  
+        var field = blockData[2];
+        var data = blockData[3];
+        
+        var markup = "<tr><td>" + field + "</td><td>" + data;
+        $("table tbody").append(markup);
+        	}, millisecondsToWait);
+	    };
 	  </script>
 	
 	  
 	</head>
 	
 	<body>
+	
+
+	
 	<div class="sticky">
 	  <nav id="test" class="navbar navbar-expand-lg navbar-light bg-light">
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,8 +144,9 @@ function myFunction() {
 }
 </script>
 
-	
-
+		<button class="btn btn-primary ladda-button" data-style="expand-left"><span class="ladda-label">expand-left</span></button>
+e
+<a href="#" class="btn btn-primary ladda-button" data-style="expand-left"><span class="ladda-label">expand-left</span></a>
 	</body>
 	
 	<footer class="page-footer font-small blue fixed-bottom">

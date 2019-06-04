@@ -31,6 +31,7 @@ public class BlockHeightServlet extends HttpServlet {
 	    String blockNumber = request.getParameter("blockNumber");
 	    String out = "Failed to connect";
 	    String URL = "https://blockchain.info/block-height/" + blockNumber + "?format=json";
+	   // String URL = "https://api.blockcypher.com/v1/btc/main/blocks/" + blockNumber;
     	try {
         	out = new Scanner(new URL(URL).openStream(), "UTF-8").useDelimiter("\\A").next();
     	} catch (Exception e) {
@@ -55,6 +56,47 @@ public class BlockHeightServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);
 	}
+    
+    
+    
+    
+
+
+        @SuppressWarnings("resource")
+    	@Override
+    	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	    list = new ArrayList<>();
+    	    String blockNumber = 59000+"";
+    	    String out = "Failed to connect";
+
+    		// String URL = "https://blockchain.info/block-height/" + blockNumber + "?format=json";
+    	    
+    	    String URL = "https://api.blockcypher.com/v1/btc/main/blocks/" + blockNumber+"";
+    	   
+    	   
+        	try {
+            	out = new Scanner(new URL(URL).openStream(), "UTF-8").useDelimiter("\\A").next();
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}
+    		JSONArray jsonArray = null;
+    		JSONObject jsnobject = new JSONObject(out);
+    	//	jsonArray = (JSONArray) jsnobject.getJSONArray("blocks");
+    		String[] data = out.toString().split(",");
+    		for(int i = 0; i < data.length; i++)
+    			addStrToList(data[i]+"");
+    		
+
+            String json = new Gson().toJson(list);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+    	}
+    
+    
+    
+   
+    
     
     private void addStrToList(String str) {
     	String data[] = str.split(":");
