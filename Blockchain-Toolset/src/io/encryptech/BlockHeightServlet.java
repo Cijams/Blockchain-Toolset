@@ -30,26 +30,47 @@ public class BlockHeightServlet extends HttpServlet {
 	    list = new ArrayList<>();
 	    String blockNumber = request.getParameter("blockNumber");
 	    String out = "Failed to connect";
+	    
+	    list = new ArrayList<>();
 	    String URL = "https://blockchain.info/block-height/" + blockNumber + "?format=json";
-	   // String URL = "https://api.blockcypher.com/v1/btc/main/blocks/" + blockNumber;
+	   
     	try {
         	out = new Scanner(new URL(URL).openStream(), "UTF-8").useDelimiter("\\A").next();
     	} catch (Exception e) {
     		e.printStackTrace();
+    		URL = "https://api.blockcypher.com/v1/btc/main/blocks/" + blockNumber+"";
+        	out = new Scanner(new URL(URL).openStream(), "UTF-8").useDelimiter("\\A").next();
     	}
-		JSONArray jsonArray = null;
-		JSONObject jsnobject = new JSONObject(out);
-		jsonArray = (JSONArray) jsnobject.getJSONArray("blocks");
-		String[] data = jsonArray.toString().split(",");
-		
-		addStrToList(data[33]);
-		addStrToList(data[32]);
-		addStrToList(data[31]);
-        
-       // list1.add(data[32]);		// hash
-       // list1.add(data[1]);		// next block
-       // list1.add(data[31]);		// time
-      //  list1.add(data[21]);		// btc
+		String[] data = out.toString().split(",");
+
+		list.add(data[13]); // height
+		list.add(data[24]); // hash
+		list.add(data[2]);	// prev block
+		list.add(data[3]);	// next block
+		list.add(data[4]);	// mrklrt
+		list.add(data[5]);	// time
+
+		//list.add(data[9]);	// n_tx
+		list.add(data[10]);	// size
+		list.add(data[11]); // block index
+		//list.add(data[12]); // main chain
+		list.add(data[13]); // height
+		//list.add(data[14]); tx
+	//	list.add(data[15]); // ver
+		list.add(data[6]);	// bits
+		list.add(data[7]);	// fee
+		list.add(data[8]);	// nonce
+		//list.add(data[16]);
+		//list.add(data[17]);
+	//	list.add(data[18]);
+	//	list.add(data[19]);
+		list.add(data[20]); // weight
+	//	list.add(data[21]); // time
+	//	list.add(data[22]);
+		//list.add(data[23]);
+		list.add(data[24]);
+	//	list.add(data[25]);
+			
 
         String json = new Gson().toJson(list);
         response.setContentType("application/json");
@@ -69,9 +90,9 @@ public class BlockHeightServlet extends HttpServlet {
     	    String blockNumber = 59000+"";
     	    String out = "Failed to connect";
 
-    		// String URL = "https://blockchain.info/block-height/" + blockNumber + "?format=json";
+    		 String URL = "https://blockchain.info/block-height/" + blockNumber + "?format=json";
     	    
-    	    String URL = "https://api.blockcypher.com/v1/btc/main/blocks/" + blockNumber+"";
+    	 //   String URL = "https://api.blockcypher.com/v1/btc/main/blocks/" + blockNumber+"";
     	   
     	   
         	try {

@@ -51,10 +51,11 @@
 		    </table>
 		  </div>
 		  
-		<div id="spacer"></div>
+
 		
 		<div id ="demo"></div>
-		
+				
+		<div id="spacer"></div>
 	</body>
 	
 
@@ -64,18 +65,30 @@ $("#somebutton").click(function() {
 	f1();
 });
 
-function resolveAfter2Seconds() { 
+function postBlockData() { 
 	let count = 0;
-	$("#demo").empty();
+	$( ".table tbody" ).empty();
 	  return new Promise(resolve => {
 		    var height = 0;
 	    	height = document.getElementById("blockSearch").elements[0].value;
-	     	$.post("TestServlet", {
+	     	$.post("BlockHeightServlet", {
 	        	blockNumber: height + ""
 	        },
 	        function(responseJson) {
 	          $.each(responseJson, function(index, item) {
-				  document.getElementById("demo").innerHTML += item + "<br>";
+	        	  var string = item.split(":",2);
+	        	  
+	        	  let field = string[0].replace(/['"]+/g, '').replace(/['{]+/g, '')
+				  .replace(/['}]+/g, '')
+				  
+				  let data = string[1].replace(/['"]+/g, '').replace(/['{]+/g, '')
+				  .replace(/['}]+/g, '')
+				  
+			        var markup = "<tr><td>" + field + "</td><td>" + data;
+			        $("table tbody").append(markup);
+				  
+				  
+				  
 				  blockData.push(item);
 	          });
 	     		resolve(blockData);
@@ -85,9 +98,10 @@ function resolveAfter2Seconds() {
 	
 	
 async function f1() {
-		let x = [];
-	  	x = await resolveAfter2Seconds();
-	  	console.log(x[3]);
+		await postBlockData();
+}
+	  	
+
 	  	
 		//	  document.getElementById("demo").innerHTML += x + "<br>";
 		
@@ -98,7 +112,7 @@ async function f1() {
         
      //   var markup = "<tr><td>" + field + "</td><td>" + data;
       // $("table tbody").append(markup);
-	}
+	
 	  
 	  // THE PROBLEM IS:
 		  // THE FILLING TABLE ACTION IS BOUND TO BUTTON CLICK AT SAME TIME AS

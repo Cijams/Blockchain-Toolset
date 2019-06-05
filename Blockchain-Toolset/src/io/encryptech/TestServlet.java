@@ -77,7 +77,7 @@ public class TestServlet extends HttpServlet {
         		e.printStackTrace();
         	}
     		String[] data = out.toString().split(",");
-    		for(int i = 0; i < data.length; i++)
+    		for(int i = 0; i < data.length-14; i++)
     			list.add(data[i]);
 
             String json = new Gson().toJson(list);
