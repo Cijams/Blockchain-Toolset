@@ -5,9 +5,7 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="styles.css">
 	  	<!--  REMOVE THESE IF YOU DONT USE COOL SPINNER BUTTON -->
-		<link rel="stylesheet" href="dist/ladda-themeless.min.css">
-		<script src="dist/spin.min.js"></script>
-		<script src="dist/ladda.min.js"></script>
+
 	  
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -54,28 +52,52 @@
 		  </div>
 		  
 		<div id="spacer"></div>
+		
+		<div id ="demo"></div>
+		
 	</body>
 	
 
 <script>
+var blockData = [];
 $("#somebutton").click(function() {
 	f1();
 });
 
-function resolveAfter2Seconds(x) { 
+function resolveAfter2Seconds() { 
+	let count = 0;
+	$("#demo").empty();
 	  return new Promise(resolve => {
-		    // GET THE DATA INSIDE HERE
-
-		  
-		  
-	      resolve(x);
-	  });
-	}
+		    var height = 0;
+	    	height = document.getElementById("blockSearch").elements[0].value;
+	     	$.post("TestServlet", {
+	        	blockNumber: height + ""
+	        },
+	        function(responseJson) {
+	          $.each(responseJson, function(index, item) {
+				  document.getElementById("demo").innerHTML += item + "<br>";
+				  blockData.push(item);
+	          });
+	     		resolve(blockData);
+	        });
+	    });
+	  };
+	
 	
 async function f1() {
-	// FILL OUT THE TABLE HERE, IT WONT BE UNDEFINED.
-	  var x = await resolveAfter2Seconds(10);
-	  console.log(x); // 10
+		let x = [];
+	  	x = await resolveAfter2Seconds();
+	  	console.log(x[3]);
+	  	
+		//	  document.getElementById("demo").innerHTML += x + "<br>";
+		
+
+		
+		//var field = x[2];
+       // var data = x[3];
+        
+     //   var markup = "<tr><td>" + field + "</td><td>" + data;
+      // $("table tbody").append(markup);
 	}
 	  
 	  // THE PROBLEM IS:
