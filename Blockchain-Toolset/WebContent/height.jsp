@@ -16,7 +16,6 @@
 
 <body>
 
-
   <div class="sticky">
     <nav id="test" class="navbar navbar-expand-lg navbar-light bg-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,15 +54,17 @@
   <div id="demo"></div>
   <div id="spacer"></div>
   
-  
+<div class="container">
 <div class="sidenav">
-  <p>About</p>
+  <p id="price"></p>
   <p>Services</p>
   <p>Clients</p>
   <p>Contact</p>
 </div>
+</div>
 
 </body>
+<!-- Listener for 'enter' button to work with search bar. -->
 <script>
 $("#heights").on('keypress',function(e) {
     if(e.which == 13) {
@@ -73,13 +74,16 @@ $("#heights").on('keypress',function(e) {
 });
 </script>
 
+<!-- Button listener to call function f1() -->
 <script>
   var blockData = [];
   $("#somebutton").click(function() {
     f1();
   });
   </script>
-  
+
+ <!-- Calls the BlockHeightServlet to invoke the Blockchain.info API
+ 	  to retrieve live data of a specified block. -->
 <script type="text/javascript">
   function postBlockData() {
     let count = 0;
@@ -112,6 +116,18 @@ $("#heights").on('keypress',function(e) {
   async function f1() {
     await postBlockData();
   }
+  
+</script>
+
+<script>
+$.get("CurrentPriceServlet", function(responseText) { 
+    $("#price").text(responseText);
+});
+setInterval(function(){ 
+	$.get("CurrentPriceServlet", function(responseText) { 
+	    $("#price").text(responseText);
+	});
+}, 10000);
 </script>
 
 <footer class="page-footer font-small blue fixed-bottom">
