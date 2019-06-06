@@ -34,11 +34,18 @@ public class BlockHeightServlet extends HttpServlet {
 	    list = new ArrayList<>();
 	    String URL = "https://blockchain.info/block-height/" + blockNumber + "?format=json";
 	   
+	    
+	    
+	    
+	    // make enter work lol..
+	    
+	    
+	    
     	try {
         	out = new Scanner(new URL(URL).openStream(), "UTF-8").useDelimiter("\\A").next();
     	} catch (Exception e) {
     		e.printStackTrace();
-    		URL = "https://api.blockcypher.com/v1/btc/main/blocks/" + blockNumber+"";
+    		URL = out = new Scanner(new URL(URL).openStream(), "UTF-8").useDelimiter("\\A").next();
         	out = new Scanner(new URL(URL).openStream(), "UTF-8").useDelimiter("\\A").next();
     	}
 		String[] data = out.toString().split(",");
@@ -68,7 +75,7 @@ public class BlockHeightServlet extends HttpServlet {
 	//	list.add(data[21]); // time
 	//	list.add(data[22]);
 		//list.add(data[23]);
-		list.add(data[24]);
+	//	list.add(data[24]);
 	//	list.add(data[25]);
 			
 

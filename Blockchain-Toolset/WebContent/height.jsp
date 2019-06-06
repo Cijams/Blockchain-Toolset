@@ -15,6 +15,8 @@
 </head>
 
 <body>
+
+
   <div class="sticky">
     <nav id="test" class="navbar navbar-expand-lg navbar-light bg-light">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,14 +54,33 @@
   </div>
   <div id="demo"></div>
   <div id="spacer"></div>
+  
+  
+<div class="sidenav">
+  <p>About</p>
+  <p>Services</p>
+  <p>Clients</p>
+  <p>Contact</p>
+</div>
+
 </body>
+<script>
+$("#heights").on('keypress',function(e) {
+    if(e.which == 13) {
+    	e.preventDefault();
+        $("#somebutton").click();
+    }
+});
+</script>
 
 <script>
   var blockData = [];
   $("#somebutton").click(function() {
     f1();
   });
-
+  </script>
+  
+<script type="text/javascript">
   function postBlockData() {
     let count = 0;
     $(".table tbody").empty();
@@ -94,11 +115,8 @@
 </script>
 
 <footer class="page-footer font-small blue fixed-bottom">
-  <!-- Copyright -->
   <div class="footer-copyright text-center py-3">© 2018 Copyright:
     <a href="https://mdbootstrap.com/education/bootstrap/"> Encryptech.io</a>
   </div>
-  <!-- Copyright -->
 </footer>
-
 </html>
