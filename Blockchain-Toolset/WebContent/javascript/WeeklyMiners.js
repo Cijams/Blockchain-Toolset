@@ -1,0 +1,1 @@
+// https://api.blockchain.info/pools?timespan=7days

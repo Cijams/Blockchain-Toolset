@@ -4,7 +4,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles/styles.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -22,16 +22,16 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">Encryptech</a>
+        <a class="navbar-brand" href="http://encryptech.net/">Encryptech</a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Wallet</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Explorer</a>
+            <a class="nav-link" href="height.jsp">Explorer</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Tools</a>
@@ -62,10 +62,10 @@
   <p id="price">$</p>
   <hr>
   <p>Newest Block</p>
-  <p id="latest"></p>
+  <p id="latest">Genesis</p>
     <hr>
   <p>Time Mined</p>
-  <p id="time"></p>
+  <p id="time">0</p>
     <hr>
    <img id="btc" src="http://encryptech.net/btc.png">
 </div>
@@ -74,13 +74,13 @@
 </body>
 
 <!-- Posts the newest block in the Blockchain -->
-<script src="LatestBlock.js"></script>
+<script src="javascript/LatestBlock.js"></script>
 
 <!-- Posts the current price of Bitcoin every 10 seconds -->
-<script src="CurrentPrice.js"></script>
+<script src="javascript/CurrentPrice.js"></script>
 
 <!-- Listener for 'enter' button to work with search bar. -->
-<script src="Listeners.js"></script>
+<script src="javascript/Listeners.js"></script>
 
 <!-- Button listener to call function f1() -->
 <script>
@@ -129,7 +129,7 @@
 </script>
 <footer class="page-footer font-small blue fixed-bottom">
   <div class="footer-copyright text-center py-3">© 2018 Copyright:
-    <a href="https://mdbootstrap.com/education/bootstrap/"> Encryptech.io</a>
+    <a href="http://encryptech.net/"> Encryptech.io</a>
   </div>
 </footer>
 </html>
