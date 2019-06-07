@@ -33,14 +33,7 @@ public class BlockHeightServlet extends HttpServlet {
 	    
 	    list = new ArrayList<>();
 	    String URL = "https://blockchain.info/block-height/" + blockNumber + "?format=json";
-	   
-	    
-	    
-	    
-	    // make enter work lol..
-	    
-	    
-	    
+
     	try {
         	out = new Scanner(new URL(URL).openStream(), "UTF-8").useDelimiter("\\A").next();
     	} catch (Exception e) {
@@ -56,28 +49,12 @@ public class BlockHeightServlet extends HttpServlet {
 		list.add(data[3]);	// next block
 		list.add(data[4]);	// mrklrt
 		list.add(data[5]);	// time
-
-		//list.add(data[9]);	// n_tx
 		list.add(data[10]);	// size
 		list.add(data[11]); // block index
-		//list.add(data[12]); // main chain
-		list.add(data[13]); // height
-		//list.add(data[14]); tx
-	//	list.add(data[15]); // ver
 		list.add(data[6]);	// bits
 		list.add(data[7]);	// fee
 		list.add(data[8]);	// nonce
-		//list.add(data[16]);
-		//list.add(data[17]);
-	//	list.add(data[18]);
-	//	list.add(data[19]);
 		list.add(data[20]); // weight
-	//	list.add(data[21]); // time
-	//	list.add(data[22]);
-		//list.add(data[23]);
-	//	list.add(data[24]);
-	//	list.add(data[25]);
-			
 
         String json = new Gson().toJson(list);
         response.setContentType("application/json");
@@ -85,23 +62,14 @@ public class BlockHeightServlet extends HttpServlet {
         response.getWriter().write(json);
 	}
     
-    
-    
-    
-
-
         @SuppressWarnings("resource")
     	@Override
     	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	    list = new ArrayList<>();
     	    String blockNumber = 59000+"";
     	    String out = "Failed to connect";
-
-    		 String URL = "https://blockchain.info/block-height/" + blockNumber + "?format=json";
+    		String URL = "https://blockchain.info/block-height/" + blockNumber + "?format=json";
     	    
-    	 //   String URL = "https://api.blockcypher.com/v1/btc/main/blocks/" + blockNumber+"";
-    	   
-    	   
         	try {
             	out = new Scanner(new URL(URL).openStream(), "UTF-8").useDelimiter("\\A").next();
         	} catch (Exception e) {
@@ -109,22 +77,15 @@ public class BlockHeightServlet extends HttpServlet {
         	}
     		JSONArray jsonArray = null;
     		JSONObject jsnobject = new JSONObject(out);
-    	//	jsonArray = (JSONArray) jsnobject.getJSONArray("blocks");
     		String[] data = out.toString().split(",");
     		for(int i = 0; i < data.length; i++)
     			addStrToList(data[i]+"");
     		
-
             String json = new Gson().toJson(list);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
     	}
-    
-    
-    
-   
-    
     
     private void addStrToList(String str) {
     	String data[] = str.split(":");

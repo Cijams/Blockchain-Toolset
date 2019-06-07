@@ -45,6 +45,7 @@
     </nav>
   </div>
   <!-- Place holder for Blockchain data to be inserted. -->
+  <div class="tablePlace">
   <div class="container">
     <table class="table">
       <tbody>
@@ -53,26 +54,33 @@
   </div>
   <div id="demo"></div>
   <div id="spacer"></div>
+  </div>
   
 <div class="container">
 <div class="sidenav">
-  <p id="price"></p>
-  <p>Services</p>
-  <p>Clients</p>
-  <p>Contact</p>
+  <p>Current Price</p>
+  <p id="price">$</p>
+  <hr>
+  <p>Newest Block</p>
+  <p id="latest"></p>
+    <hr>
+  <p>Time Mined</p>
+  <p id="time"></p>
+    <hr>
+   <img id="btc" src="http://encryptech.net/btc.png">
 </div>
 </div>
 
 </body>
+
+<!-- Posts the newest block in the Blockchain -->
+<script src="LatestBlock.js"></script>
+
+<!-- Posts the current price of Bitcoin every 10 seconds -->
+<script src="CurrentPrice.js"></script>
+
 <!-- Listener for 'enter' button to work with search bar. -->
-<script>
-$("#heights").on('keypress',function(e) {
-    if(e.which == 13) {
-    	e.preventDefault();
-        $("#somebutton").click();
-    }
-});
-</script>
+<script src="Listeners.js"></script>
 
 <!-- Button listener to call function f1() -->
 <script>
@@ -96,7 +104,8 @@ $("#heights").on('keypress',function(e) {
         },
         function(responseJson) {
           $.each(responseJson, function(index, item) {
-            var string = item.split(":", 2);
+        	var string = [1];
+            string = item.split(":", 2);
 
             let field = string[0].replace(/['"]+/g, '').replace(/['{]+/g, '')
               .replace(/['}]+/g, '')
@@ -104,6 +113,7 @@ $("#heights").on('keypress',function(e) {
             let data = string[1].replace(/['"]+/g, '').replace(/['{]+/g, '')
               .replace(/['}]+/g, '').replace(/['\]]+/g, '').replace(/['[]+/g, '')
 
+           // var markup = `<tr><td> ${field} </td><td> ${data}`;
             var markup = "<tr><td>" + field + "</td><td>" + data;
             $("table tbody").append(markup);
             blockData.push(item);
@@ -116,20 +126,7 @@ $("#heights").on('keypress',function(e) {
   async function f1() {
     await postBlockData();
   }
-  
 </script>
-
-<script>
-$.get("CurrentPriceServlet", function(responseText) { 
-    $("#price").text(responseText);
-});
-setInterval(function(){ 
-	$.get("CurrentPriceServlet", function(responseText) { 
-	    $("#price").text(responseText);
-	});
-}, 10000);
-</script>
-
 <footer class="page-footer font-small blue fixed-bottom">
   <div class="footer-copyright text-center py-3">© 2018 Copyright:
     <a href="https://mdbootstrap.com/education/bootstrap/"> Encryptech.io</a>
